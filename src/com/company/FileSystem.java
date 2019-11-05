@@ -8,10 +8,13 @@ public abstract class FileSystem {
     private String createdAt;
     private User createdBy;
 
-    public FileSystem(String name) {
+    public FileSystem(String name) throws Exception {
         createdBy = getCurrentUser();
         createdAt = Instant.now().toString();
-        this.name = name;
+        if (CommonUtils.isValidName(name))
+            this.name = name;
+        else
+            throw new Exception("name is not valid");
     }
 
     private User getCurrentUser() {
