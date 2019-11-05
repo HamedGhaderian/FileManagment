@@ -20,7 +20,10 @@ public abstract class FileSystem {
 
     public abstract long getSize();
 
-    public abstract boolean rename(String newName) throws Exception;
+    public boolean rename(String newName) throws Exception {
+        setName(newName);
+        return true;
+    }
 
     public User getWhoCreated() {
         return createdBy;
@@ -34,7 +37,7 @@ public abstract class FileSystem {
         return name;
     }
 
-    protected void setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
 }
