@@ -19,7 +19,11 @@ public class Volume extends FileSystem {
 
     @Override
     public long getSize() {
-        return 0;
+        long totalSize = 0;
+        for (FileSystem fileSystem : mFileAndFolderList) {
+            totalSize += fileSystem.getSize();
+        }
+        return totalSize;
     }
 
     @Override
