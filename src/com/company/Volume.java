@@ -24,7 +24,21 @@ public class Volume extends FileSystem {
 
     @Override
     public boolean rename(String newName) throws Exception {
-        return false;
+        if (getName().equals(newName)) {
+            System.out.println("The old name and the new one are the same");
+            return false;
+        }
+        for (Volume volume :
+                getAllVolume())
+            if (volume.getName().toLowerCase().equals(newName.toLowerCase()))
+                throw new Exception("this name is duplicated");
+
+        System.out.println("Volume successfully renamed");
+        return super.rename(newName);
+    }
+
+    private List<Volume> getAllVolume() {
+        return new ArrayList<>();
     }
 
     public boolean add(FileSystem fileOrFolder) throws Exception {
